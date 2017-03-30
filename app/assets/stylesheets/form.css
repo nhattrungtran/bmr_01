@@ -1,0 +1,68 @@
+.panel-body {
+  padding-top: 30px;
+}
+
+.alert {
+  display: none;
+}
+
+.input-group {
+  margin-bottom: 25px !important;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+
+.mainbox {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.title-form {
+  font-size: 27px !important;
+  color: inherit;
+}
+
+.form-nanel {
+  background: #d9edf7 !important;
+}
+
+.form-input {
+  font-size: 15px !important;
+  height: 46px !important;
+}
+
+#btn-login {
+  width: 200px !important;
+  height: 42px;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 20px !important;
+}
+
+.label-form {
+  color: black !important;
+  margin: 10px;
+  width: 269px;
+  text-align: left;
+}
+
+.btn-form {
+  font-weight: 700;
+  line-height: 30px;
+  font-size: 20px;
+  width: 200px !important;
+}
+
+.btn-send-pass {
+  font-weight: 400;
+  line-height: 30px;
+  font-size: 20px;
+  width: 400px !important;
+  margin-bottom: 10px;
+}
+
+.label-form-send-pass {
+  margin-bottom: 10px;
+}

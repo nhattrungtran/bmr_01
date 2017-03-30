@@ -1,0 +1,6 @@
+<p><%= t("view.index.hello") %> <%= @email %>!</p>
+<% if @resource.try(:unconfirmed_email?) %>
+  <p><%= t("view.index.notify_change_mail") %><%= @resource.unconfirmed_email %>.</p>
+<% else %>
+  <p><%= t("view.index.hasbeen_change_mail") %><%= @resource.email %>.</p>
+<% end %>

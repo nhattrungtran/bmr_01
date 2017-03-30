@@ -1,0 +1,64 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.login-modal {
+  font-size: 14px;
+  text-align: center;
+  margin-left: 13px;
+  cursor: pointer;
+}
+
+.btn-branch {
+  margin-right: 30px;
+  width: 178px;
+  height: 50px;
+  border-radius: 0px;
+  color: white;
+  font-size: 14px;
+  line-height: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.btn-branch:hover {
+  background: #e63e14;
+}
+
+.signin-header {
+  float: right;
+  margin-right: 88px;
+}
+
+.btn-signin {
+  color: #fff;
+  background: rgba(8, 8, 8, 0.39);
+  line-height: 36px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  width: 149px;
+  margin-top: -50px;
+}
+
+.btn-signin:hover {
+  color: white;
+  border-color: red;
+  background: rgba(14, 14, 14, 0.58);
+}
+
+.logo-banner {
+  margin-left: 70px;
+  margin-top: 20px;
+}
+
+.input-signup {
+  margin-left: 50px;
+  height: 44px;
+  width: 380px !important;
+  border: solid 1px #f9423a !important;
+  border-radius: 4px !important;
+  font-size: 20px !important;
+}
+
+.btn-get-start {
+  float: right;
+}

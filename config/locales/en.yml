@@ -1,23 +1,62 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  view:
+    user:
+      account: "Account"
+    index:
+      title_content_page: "Book Meeting Room System"
+      title_content_p: "The best booking solution"
+      hello: "Hello"
+      edit: "Edit"
+      login: "Log in"
+      signup: "Sign up"
+      sign_in: "Sign in"
+      get_start: "Get Started"
+      enter_email: "Enter email"
+      new_pass: "New password"
+      sign_in_with: "Sign in with"
+      holder: "e.g. name@company.com"
+      enter_password: "Enter password"
+      change_pass: "Change your password"
+      change_my_pass: "Change my password"
+      forgot_pass: "Forgot your password?"
+      confirm_new_pass:  "Confirm new password"
+      leave_blank: "leave blank if you don't want to change it"
+      minimum_password_length: "characters minimum"
+      ignore_change_pass: "If you didn't request this, please ignore this email."
+      ignore_change_pass_: "Your password won't change until you access the link
+        above and create a new one."
+      confirm_change_pass: "Someone has requested a link to change your password.
+        You can do this through the link below."
+      notify_pass_change: "We're contacting you to notify you that your password
+        has been changed."
+      notify_change_mail: "We're contacting you to notify you that your email is
+        being changed to "
+      hasbeen_change_mail: "We're contacting you to notify you that your email
+        has been changed to "
+      send_reset_pass: "Send me reset password instructions"
+      update: "Update"
+      current_password: "we need your current password to confirm your changes"
+      receive_unlock: "Didn't receive unlock instructions?"
+      receive_confirm: "Didn't receive confirmation instructions?"
+
+    footer:
+      title_colum4: "Da Nang"
+      phone_colum2: "84-4-3795-5417"
+      title_colum3: "Ho Chi Minh"
+      title_colum1: "Framgia Vietnam Co., Ltd"
+      infor_colum1: "Book meeting room"
+      support_colum1: "24/7 customer support"
+      email_colum1: "framgia@framgia.com.vn"
+      title_colum2: "Ha Noi (Head office)"
+      infor_colum2: "13F Keangnam Landmark 72 Tower,
+        Plot E6, Pham Hung Road, Nam Tu Liem District., Ha Noi"
+      infor_colum3: "8F Nice building, 467 Dien Bien Phu Str., Ward 25,
+        Binh Thanh district, HCMC"
+      infor_colum4: "6F, Vinh Trung Plaza, 255~257 Hung Vuong Str.,
+        Vinh Trung ward, Thanh Khe district, Da Nang"
+      framgia_japan: " Framgia Japan,Inc."
+      more_branch: "Find more about our branches"
+      framgia_holding: "Framgia Holdings Pte. Ltd"
+      framgia_philip: "Framgia Philippines Co.,Ltd"
+      framgia_bangladesh: "Framgia Bangladesh Ltd"
+      framgia_cambodia: " Framgia Cambodia Ltd"
