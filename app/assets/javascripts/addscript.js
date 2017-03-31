@@ -29,7 +29,7 @@ $(document).ready(function(){
   initialize();
   });
   var hash = $.trim( window.location.hash );
-  if (hash) $('.inner-nav a[href$=''+hash+'']').trigger('click');
+  if (hash) $('.inner-nav a[href$="'+hash+'"]').trigger('click');
 
   $('.f-item .radio').click(function() {
     $('.f-item').removeClass('active');

@@ -1,0 +1,12 @@
+<header>
+  <nav class="main-nav" role="navigation" id="nav">
+    <ul class="wrap">
+      <li><%= link_to t("view.user.account"), root_path, class: "home-link" %></a>
+        <ul>
+          <li><%= link_to t("view.user.logout"), destroy_user_session_path,
+            method: :delete %></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>

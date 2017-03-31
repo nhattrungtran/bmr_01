@@ -1,0 +1,46 @@
+$(document).ready(function() {
+  $('#edit-user-name').submit(function() {
+    user_full_name = $('#user_full_name').val();
+    $.ajax({
+      type: 'put',
+      url: '/users',
+      data: {
+        user: {
+          full_name: user_full_name
+        }
+      },
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $('#full-name-user').html(responses.full_name);
+      $('.alert-update-user').addClass('alert alert-success')
+        .html('<%= I18n.t("view.user.update_name_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        $('.alert-update-user').fadeToggle();
+      }, 3000);
+    });
+    return false;
+  });
+
+  $('#edit-user-pass').submit(function() {
+    user_password = $('#user_password').val();
+    $.ajax({
+      type: 'put',
+      url: '/users',
+      data: {
+        user: {
+          password: user_password
+        }
+      },
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $('.alert-update-user').addClass('alert alert-success')
+        .html('<%= I18n.t("view.user.update_pass_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        $('.alert-update-user').fadeToggle();
+      }, 3000);
+    });
+    return false;
+  });
+});

@@ -18,12 +18,13 @@
   </div>
   <div class="sign-up" method="post" >
     <div class="signup-form">
-      <input type="text" class="form-control input-signup" name="email"
-       type="email" id="input-mail" placeholder="<%= t "view.index.holder" %>">
-      <div class="btn-get-start">
-        <%= link_to t("view.index.get_start"), new_user_registration_path,
-          class: "btn-signup btn" %>
-      </div>
+      <%= form_tag new_user_registration_path, method: :get  do %>
+        <%= email_field_tag :email, nil, class: "form-control input-signup",
+          placeholder: t("view.index.holder") %>
+        <div class="btn-get-start">
+          <%= submit_tag t("view.index.get_start"), class: "btn-signup btn" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

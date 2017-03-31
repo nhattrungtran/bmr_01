@@ -1,3 +1,30 @@
+.account-main{
+  background: #E9E6E0 url(body.jpg) 0 0 repeat !important;
+}
+.button-edit-user{
+  margin-top: 10px;
+  float: right;
+}
+.title-account{
+  text-align: center;
+  font-size: 20px;
+}
+.table-infor-user{
+  padding-bottom: 20px;
+}
+.tr-infor-user{
+  height: 60px !important;
+}
+.home-link{
+  cursor: pointer !important;
+  color: white !important;
+}
+.wrap {
+  max-width: 1242px !important;
+}
+.content {
+  padding: 60px 0 0 !important;
+}
 .iner-content-index {
 
   font-family: 'aktiv-grotesk-std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
