@@ -1,0 +1,54 @@
+.iner-content-index {
+
+  font-family: 'aktiv-grotesk-std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  margin: 0 auto;
+}
+.iner-index-child {
+  font-family: 'aktiv-grotesk-std','Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 34px !important;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 0;
+  color: #fff;
+}
+.content-text-index{
+  width: 1147px;
+}
+.inner-section-index{
+  width: 100%;
+  height: 103%;
+  margin-top: -10px ;
+  background-color: rgba(0,0,0,.5) ;
+}
+.banner-header{
+  padding-top: 30px;
+}
+.btn-signup {
+  color: #fff;
+  background: rgba(17, 132, 245, 0.9);
+  line-height: 32px;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  width: 149px;
+  margin-top: -63px;
+}
+
+.btn-signup:hover {
+  color: rgba(8, 8, 8, 0.39);
+}
+
+.label-index {
+  font-size: 14px !important;
+}
+
+.title-form {
+  font-size: 18px !important;
+}
+
+.crumbs {
+  font-size: 14px;
+}

@@ -1,0 +1,30 @@
+﻿<section class="slider clearfix">
+  <section class="inner-section-index">
+    <div class="banner-header">
+      <div class="banner-logo">
+        <%= image_tag "logo-banner.png", class: "logo-banner" %>
+      </div>
+      <div class="signin-header">
+        <%= link_to t("view.index.sign_in"), new_user_session_path,
+          class: "btn-signin btn" %>
+      </div>
+    </div>
+  </section>
+</section>
+<div class="main-search">
+  <div class="content-text-index" >
+    <span class="iner-content-index"><%= t "view.index.title_content_page" %></span>
+    <p class="iner-index-child"><%= t "view.index.title_content_p" %></p>
+  </div>
+  <div class="sign-up" method="post" >
+    <div class="signup-form">
+      <input type="text" class="form-control input-signup" name="email"
+       type="email" id="input-mail" placeholder="<%= t "view.index.holder" %>">
+      <div class="btn-get-start">
+        <%= link_to t("view.index.get_start"), new_user_registration_path,
+          class: "btn-signup btn" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render "layouts/footer" %>

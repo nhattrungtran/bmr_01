@@ -1,0 +1,35 @@
+<%= render "layouts/header" %>
+<div class="container">
+  <div id="loginbox" class="mainbox col-md-6 col-md-offset-3
+    col-sm-8 col-sm-offset-2">
+      <div class="panel panel-info" >
+        <div class="panel-heading form-nanel">
+          <div class="panel-title title-form"><%= t "view.index.sign_in" %></div>
+        </div>
+        <div class="panel-body" >
+          <%= form_for(resource, as: resource_name, class: "form-horizontal",
+            url: session_path(resource_name))  do |f| %>
+            <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user">
+              </i></span>
+            <%= f.email_field :email, class: "form-input form-control",
+              placeholder: t("view.index.enter_email"), autofocus: true %>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock">
+                </i></span>
+              <%= f.password_field :password, class: "form-input form-control",
+                placeholder:  t("view.index.enter_password"), autocomplete: "off" %>
+            </div>
+            <div class="form-group">
+              <%= f.submit t("view.index.login"), class: "btn btn-primary btn-form" %>
+            </div>
+            <div class="form-group">
+              <%= render "devise/shared/links" %>
+            </div>
+          <% end %>
+         </div>
+      </div>
+   </div>
+</div>
+<%= render "layouts/footer" %>

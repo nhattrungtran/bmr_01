@@ -1,0 +1,45 @@
+<%= render "layouts/header" %>
+<div class="container">
+  <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="panel-title title-form">
+        <h2><%= t("view.index.edit") %><%= resource_name.to_s.humanize %>
+        </h2></div>
+      </div>
+      <div class="panel-body" >
+        <%= form_for(resource, as: resource_name,
+          url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+          <div class="field">
+            <%= f.label :password %> <i>(<%= t "view.index.leave_blank" %>)</i><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+            <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %>
+              <%= t "view.index.minimum_password_length" %></em>
+            <% end %>
+          </div>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+          <div class="field">
+            <%= f.label :current_password %> <i>(<%= t "view.index.current_password" %>)
+              </i><br />
+            <%= f.password_field :current_password, autocomplete: "off" %>
+          </div>
+          <div class="actions">
+            <%= f.submit t("update") %>
+          </div>
+        <% end %>
+        <%= link_to "Back", :back %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render "layouts/footer" %>
