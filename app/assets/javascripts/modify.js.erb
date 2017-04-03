@@ -1,0 +1,164 @@
+$(document).ready(function() {
+  $('#edit-user-name').submit(function() {
+    user_full_name = $('#user_full_name').val();
+    $.ajax({
+      type: 'put',
+      url: '/users',
+      data: {
+        user: {
+          full_name: user_full_name
+        }
+      },
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $('#full-name-user').html(responses.full_name);
+      $('.alert-update-user').addClass('alert alert-success')
+        .html('<%= I18n.t("view.user.update_name_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        $('.alert-update-user').fadeToggle();
+      }, 3000);
+    });
+    return false;
+  });
+
+  $('#edit-user-pass').submit(function() {
+    user_password = $('#user_password').val();
+    $.ajax({
+      type: 'put',
+      url: '/users',
+      data: {
+        user: {
+          password: user_password
+        }
+      },
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $('.alert-update-user').addClass('alert alert-success')
+        .html('<%= I18n.t("view.user.update_pass_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        $('.alert-update-user').fadeToggle();
+      }, 3000);
+    });
+    return false;
+  });
+
+  $('.btn-save-company').click(function() {
+    company_id = $(this).attr('data-company-id');
+    company_name = $(this).prev().val();
+    $.ajax({
+      type: 'put',
+      url: '/companies/' + company_id,
+      data: {
+        company: {
+          name: company_name
+        }
+      },
+      context: this,
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $(this).parent().hide(200);
+      $(this).parent().prev().html(responses.company_name);
+      alert_success = $(this).parents('table').prev();
+      $(this).parents('table').prev().addClass('alert alert-success')
+        .html('<%= I18n.t("view.company.update_company_name_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        alert_success.fadeToggle();
+      }, 3000);
+    });
+  });
+
+  $('.btn-save-descript').click(function() {
+    company_id = $(this).attr('data-company-id');
+    company_descript = $(this).prev().val();
+    $.ajax({
+      type: 'put',
+      url: '/companies/' + company_id,
+      data: {
+        company: {
+          descript: company_descript
+        }
+      },
+      context: this,
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $(this).parent().hide(200);
+      $(this).parent().prev().html(responses.company_descript);
+      alert_success = $(this).parents('table').prev();
+      $(this).parents('table').prev().addClass('alert alert-success')
+        .html('<%= I18n.t("view.company.update_company_descript_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        alert_success.fadeToggle();
+      }, 3000);
+    });
+  });
+
+  $('.btn-save-workspace-name').click(function() {
+    workspace_id = $(this).attr('data-workspace-id');
+    workspace_name = $(this).prev().val();
+    $.ajax({
+      type: 'put',
+      url: '/workspaces/' + workspace_id,
+      data: {
+        workspace: {
+          name: workspace_name,
+          id: workspace_id
+        }
+      },
+      context: this,
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $(this).parent().hide(200);
+      workspace_name_text = $(this).parents('ul').children().first().children();
+      workspace_name_text.text(responses.workspace_name);
+      alert_success = $(this).parents('ul').prev();
+      $(this).parents('ul').prev().addClass('alert alert-success')
+        .html('<%= I18n.t("view.workspace.update_workspace_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        alert_success.fadeToggle();
+      }, 3000);
+    });
+  });
+
+  $('.delete-btn').click(function() {
+    confirm('<%= I18n.t("view.app.confirm_delete") %>');
+    company_id = $(this).attr('data-company-id');
+    $.ajax({
+      type: 'delete',
+      url: ' /companies/' + company_id,
+      data: {
+        company: {
+          id: company_id
+        }
+      },
+      context: this,
+      dataType: 'JSON'
+    }).success(function() {
+      $(this).parents('#company-content-' + company_id).hide();
+    });
+    return false;
+  });
+
+  $('.workspace-delete-link').click(function() {
+    confirm('<%= I18n.t("view.app.confirm_delete") %>');
+    workspace_id = $(this).attr('data-workspace-id');
+    $.ajax({
+      type: 'delete',
+      url: ' /workspaces/' + workspace_id,
+      data: {
+        workspace: {
+          id: workspace_id
+        }
+      },
+      context: this,
+      dataType: 'JSON'
+    }).success(function() {
+      $(this).parents('ul').hide();
+    });
+    return false;
+  });
+});

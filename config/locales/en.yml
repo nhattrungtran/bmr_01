@@ -1,5 +1,32 @@
 en:
   view:
+    app:
+      confirm_delete: "Are you sure you want to delete? "
+      close: "Close"
+      save: "Save"
+      descript: "Descript"
+      delete: "Delete"
+    company:
+      delete: "Delete company"
+      new_descript: "New descript"
+      name: "Company name: "
+      new_name: "Company new name"
+      descript: "Descript: "
+      add_company: "Add company"
+      add_company_success: "Add company success"
+      add_company_fail: "Add company not success"
+      not_found_company: "Not found company"
+      update_company_name_success: "Update company name success"
+      update_company_descript_success: "Update company descript success"
+    workspace:
+      update_workspace_success: "Update workspace success"
+      new_workspace_name: "New workspace name"
+      name: "Workspace name: "
+      descript: "Descript: "
+      add_workspace: "Add Workspace"
+      add_workspace_success: "Add workspace success"
+      add_workspace_fail: "Add workspace not success"
+      not_found_workspace: "Not found workspace"
     user:
       save: "Save"
       account: "Account"

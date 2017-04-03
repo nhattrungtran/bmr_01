@@ -1,0 +1,32 @@
+<%= render "users/header_user" %>
+<div class="main account-main" role="main">
+  <div class="wrap clearfix">
+    <div class="content clearfix">
+      <nav role="navigation" class="breadcrumbs clearfix">
+        <ul class="crumbs">
+          <h2 class="title-account">
+            <%= t "view.user.my_account" %>
+          </h2>
+        </ul>
+      </nav>
+      <section class="three-fourth">
+        <nav class="inner-nav">
+          <ul>
+            <li><a href="#Workspaces" ><%= t "view.user.workspaces" %></a></li>
+            <li><a href="#my-settings" ><%= t "view.user.settings" %></a></li>
+            <li><a href="#my-company" ><%= t "view.user.my_company" %></a></li>
+          </ul>
+        </nav>
+        <section id="Workspaces" class="tab-content">
+          <article class="bookings">
+            <h1><a href="#"><%= t "view.user.workspaces" %> </a></h1>
+            <div class="b-info"><%= @workspace.name %></div>
+            <div class="b-info"><%= @workspace.descript %> </div>
+            <div class="actions"></div>
+          </article>
+        </section>
+      </section>
+    </div>
+  </div>
+</div>
+<%= render "layouts/footer" %>

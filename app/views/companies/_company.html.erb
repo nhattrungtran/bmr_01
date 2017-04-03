@@ -1,0 +1,41 @@
+<div id="add-company" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= t "view.company.add_company" %></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @company do |f| %>
+          <div class="input-group">
+            <%= f.label t("view.company.name"),
+              class: "col-md-3 control-label label-form" %>
+            <%= f.text_field :name, class: "form-input form-control",
+              autofocus: true %>
+          </div>
+          <div class="input-group">
+            <%= f.label t("view.company.descript"),
+              class: "col-md-3 control-label label-form" %>
+            <%= f.text_field :descript, class: "form-input form-control",
+              autofocus: true %>
+          </div>
+          <%= f.submit t("view.user.save"), id: "submit1",
+            class: "gradient-button" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          <%= t "view.app.close" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>">
+    <%= message %>
+  </div>
+<% end %>
+<%= render partial: "companies/load_company", collection: @companies, as: :company,
+  locals: {workspace: @workspace, workspaces: @workspaces}
+ %>
