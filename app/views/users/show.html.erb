@@ -1,0 +1,93 @@
+<%= render "header_user" %>
+<div class="main account-main" role="main">
+  <div class="wrap clearfix">
+    <div class="content clearfix">
+      <nav role="navigation" class="breadcrumbs clearfix">
+        <ul class="crumbs">
+          <h2 class="title-account">
+            <%= t "view.user.my_account" %>
+          </h2>
+        </ul>
+      </nav>
+      <section class="three-fourth">
+        <nav class="inner-nav">
+          <ul>
+            <li><a href="#my-company" ><%= t "view.user.my_company" %></a></li>
+            <li><a href="#Workspaces" ><%= t "view.user.workspaces" %></a></li>
+            <li><a href="#my-settings" ><%= t "view.user.settings" %></a></li>
+          </ul>
+        </nav>
+        <section id="my-company" class="tab-content">
+          <article class="my-company">
+            <h1><%= t "view.user.my_company" %></h1>
+          </article>
+        </section>
+        <section id="Workspaces" class="tab-content">
+          <article class="bookings">
+            <h1><a href="#"><%= t "view.user.workspaces" %></a></h1>
+            <div class="b-info">
+            </div>
+            <div class="actions">
+            </div>
+          </article>
+        </section>
+        <section id="my-settings" class="tab-content" >
+          <article class="mysettings">
+            <h1><%= t "view.user.personal_detail" %></h1>
+            <div class="alert-update-user"></div>
+            <table>
+              <tbody>
+                <tr>
+                  <th><%= t "view.user.full_name" %></th>
+                  <td>
+                    <span id="full-name-user"><%= current_user.full_name %></span>
+                    <div class="edit_field" id="field1" >
+                      <label for="new_name"><%= t "view.user.new_name" %></label>
+                      <%= form_for(resource, as: resource_name,
+                        url: registration_path(resource_name),
+                        html: {method: :put, id: "edit-user-name"}) do |f| %>
+                        <%= f.text_field :full_name, autocomplete: "off" %>
+                        <%= f.submit t("view.user.save"), id: "submit1",
+                          class: "gradient-button" %>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td><a href="#field1" class="gradient-button edit">
+                    <%= t "view.user.edit" %></a>
+                  </td>
+                </tr>
+                <tr>
+                  <th><%= t "view.user.email_address" %></th>
+                  <td><%= current_user.email %>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th><%= t "view.user.password" %> </th>
+                  <td>
+                    <%= t "view.user.star_password" %>
+                    <div class="edit_field" id="field2" >
+                      <label for="new_pass"><%= t "view.user.new_password" %>
+                      </label>
+                      <%= form_for(resource, as: resource_name,
+                        url: registration_path(resource_name),
+                        html: {method: :put, id: "edit-user-pass"}) do |f| %>
+                        <%= f.password_field :password, autocomplete: "off" %>
+                        <%= f.submit t("view.user.save"), id: "submit2",
+                          class: "gradient-button" %>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td><a href="#field2" class="gradient-button edit">
+                    <%= t "view.user.edit" %></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+      </section>
+    </div>
+  </div>
+</div>
+<%= render "layouts/footer" %>

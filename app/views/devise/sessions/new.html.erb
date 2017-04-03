@@ -6,6 +6,11 @@
         <div class="panel-heading form-nanel">
           <div class="panel-title title-form"><%= t "view.index.sign_in" %></div>
         </div>
+        <div class="error-login-flash">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
+          <% end %>
+        </div>
         <div class="panel-body" >
           <%= form_for(resource, as: resource_name, class: "form-horizontal",
             url: session_path(resource_name))  do |f| %>
@@ -22,7 +27,8 @@
                 placeholder:  t("view.index.enter_password"), autocomplete: "off" %>
             </div>
             <div class="form-group">
-              <%= f.submit t("view.index.login"), class: "btn btn-primary btn-form" %>
+              <%= f.submit t("view.index.login"), class: "btn btn-primary
+                btn-form" %>
             </div>
             <div class="form-group">
               <%= render "devise/shared/links" %>
