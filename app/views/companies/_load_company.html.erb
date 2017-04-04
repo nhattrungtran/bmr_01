@@ -1,0 +1,111 @@
+<% if company.owner_id == current_user.id %>
+  <article class="mysettings" id="company-content-<%= company.id %>">
+    <h1> <%= company.name %>
+      <span class="add-workspace-btn">
+        <button type="button" class="btn btn-default btn-sm"
+          data-toggle="modal" data-target="#add-workspace-<%= company.id %>" >
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <%= t "view.workspace.add_workspace" %>
+        </button>
+      </span>
+    </h1>
+    <div class="alert-update-company"></div>
+    <table>
+      <tbody>
+        <tr>
+          <th><%= t "view.company.name" %></th>
+          <td>
+            <span id="name-company"><%= company.name %></span>
+            <div class="edit_field" id="company-name-field-<%= company.id %>" >
+              <label for="new_name"><%= t "view.company.new_name" %></label>
+              <input type="text" value="<%= company.name %>">
+              <button class="btn-save-company btn btn-success"
+                data-company-id="<%= company.id %>"><%= t "view.app.save" %>
+              </button>
+            </div>
+          </td>
+          <td><a href="#company-name-field-<%= company.id %>"
+            class="gradient-button edit">
+            <%= t "view.user.edit" %></a>
+          </td>
+        </tr>
+        <tr>
+          <th><%= t "view.app.descript" %></th>
+          <td>
+            <span class="descript-company"><%= company.descript %></span>
+            <div class="edit_field" id="company-descript-field-<%= company.id %>" >
+              <label for="new_name"><%= t "view.company.new_descript" %></label>
+              <input type="text" value="<%= company.descript %>">
+              <button class="btn-save-descript btn btn-success"
+                data-company-id="<%= company.id %>"><%= t "view.app.save" %>
+              </button>
+            </div>
+          </td>
+          <td><a href="#company-descript-field-<%= company.id %>"
+            class="gradient-button edit">
+            <%= t "view.user.edit" %></a>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= t "view.user.workspaces" %>
+            <div id="add-workspace-<%= company.id %>" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      &times;</button>
+                    <h4 class="modal-title"><%= t "view.workspace.add_workspace" %>
+                    </h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= form_for workspace do |f| %>
+                      <div class="input-group">
+                        <%= f.label t("view.workspace.name"),
+                          class: "col-md-3 control-label label-form" %>
+                        <%= f.text_field :name, class: "form-input form-control",
+                          autofocus: true %>
+                      </div>
+                      <div class="input-group">
+                        <%= f.label t("view.workspace.descript"),
+                          class: "col-md-3 control-label label-form" %>
+                        <%= f.text_field :descript, class: "form-input form-control",
+                          autofocus: true %>
+                        <input type="hidden" name="workspace[company_id]"
+                          value="<%= company.id %>">
+                      </div>
+                      <%= f.submit t("view.user.save"), id: "submit1",
+                        class: "gradient-button" %>
+                    <% end %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                      <%= t "view.app.close" %>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </th>
+          <td>
+            <div class="alert-update-workspace"></div>
+            <%= render partial: "companies/workspace", collection: workspaces,
+              as: :workspace, locals: {company: company} %>
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <%= link_to  t("view.company.delete"), company_path(company),
+              data: {company_id: company.id}, method: :delete,
+              class:"btn-default btn delete-btn" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+<% end %>

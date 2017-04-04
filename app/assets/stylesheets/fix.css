@@ -1,6 +1,51 @@
 .account-main{
   background: #E9E6E0 url(body.jpg) 0 0 repeat !important;
 }
+.delete-btn {
+  color: red;
+}
+.delete-btn:hover {
+  background: #d73a49;
+  color: white;
+}
+.workspace-edit-link{
+  color: #0e5487;
+}
+.ul-workspace{
+  width: 100%;
+  overflow: hidden;
+  min-height: 30px;
+  margin-top: 5px;
+}
+.workspace-edit-link:hover{
+  color: blue;
+}
+.workspace-delete-link:hover{
+  color: red;
+}
+.workspace-delete-link{
+  color: #0e5487;
+}
+.add-company-btn{
+  float: right;
+}
+.add-workspace-btn{
+  float: right;
+}
+.glyphicon:before {
+  margin-right: 5px !important;
+}
+.edit-btn-workspace{
+  margin-left: 10px;
+}
+.ul-workspace{
+  width: 100%;
+  overflow: hidden;
+}
+
+.btn-lg{
+  padding: 7px 11px !important;
+}
 .button-edit-user{
   margin-top: 10px;
   float: right;
@@ -26,7 +71,6 @@
   padding: 60px 0 0 !important;
 }
 .iner-content-index {
-
   font-family: 'aktiv-grotesk-std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 64px;
   font-weight: 700;
