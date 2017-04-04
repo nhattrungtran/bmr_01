@@ -1,7 +1,14 @@
 module ApplicationHelper
 
+  def active_menu controller
+    params[:controller] == controller ? "active" : ""
+  end
+
   def resource_name
     :user
+  end
+  def is_workspace_controller controller
+    params[:controller] == controller
   end
 
   def resource
@@ -11,5 +18,9 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+  def company_owner?
+    workspace.company_owner_id == current_user.id
+  end
+
 
 end

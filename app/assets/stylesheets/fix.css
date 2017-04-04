@@ -1,3 +1,14 @@
+.edit_field{
+  display: none;
+}
+
+.btn-addroom{
+  float: right;
+}
+.room-name-label{
+  top: 0px !important;
+  margin-right: 5px;
+}
 .account-main{
   background: #E9E6E0 url(body.jpg) 0 0 repeat !important;
 }

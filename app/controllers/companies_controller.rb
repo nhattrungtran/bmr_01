@@ -1,6 +1,13 @@
 class CompaniesController < ApplicationController
   before_action :load_company, only: [:update, :destroy]
 
+  def index
+    @companies = Company.all
+    @company = Company.new
+    @workspace = Workspace.new
+    @workspaces = Workspace.all
+  end
+
   def create
     @company = Company.new company_params
     if @company.save
