@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :companies
   resources :workspaces
   resources :rooms
+  resources :employees
+  resources :manager_workspaces
 end

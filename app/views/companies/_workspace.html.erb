@@ -1,14 +1,14 @@
 <% if workspace.company_id == company.id %>
   <ul class="ul-workspace">
     <li class="glyphicon glyphicon-modal-window">
-      <%= link_to workspace.name, workspace_path(workspace) %>
+      <%= link_to workspace.name, workspace_path(workspace), data: {turbolinks: false} %>
     </li>
     <span class="edit-btn-workspace">
       <a href="#workspace-edit-field-<%= workspace.id %>"
         class="workspace-edit-link edit"><%= t "view.user.edit" %></a>
       <a data-workspace-id="<%= workspace.id %>"
         class="workspace-delete-link" rel="nofollow" data-method="delete"
-        href="/companies/5"><%= t "view.app.delete" %> </a>
+        href="#"><%= t "view.app.delete" %> </a>
     </span>
     <div class="edit_field" id="workspace-edit-field-<%= workspace.id %>" >
       <label for="new_name">

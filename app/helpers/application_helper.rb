@@ -18,9 +18,4 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-  def company_owner?
-    workspace.company_owner_id == current_user.id
-  end
-
-
 end

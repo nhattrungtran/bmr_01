@@ -152,59 +152,215 @@ $(document).ready(function() {
   });
 
   $('.delete-btn').click(function() {
-    confirm('<%= I18n.t("view.app.confirm_delete") %>');
-    company_id = $(this).attr('data-company-id');
-    $.ajax({
-      type: 'delete',
-      url: ' /companies/' + company_id,
-      data: {
-        company: {
-          id: company_id
-        }
-      },
-      context: this,
-      dataType: 'JSON'
-    }).success(function() {
-      $(this).parents('#company-content-' + company_id).hide();
-    });
-    return false;
+    if (confirm('<%= I18n.t("view.app.confirm_delete") %>')) {
+      company_id = $(this).attr('data-company-id');
+      $.ajax({
+        type: 'delete',
+        url: ' /companies/' + company_id,
+        data: {
+          company: {
+            id: company_id
+          }
+        },
+        context: this,
+        dataType: 'JSON'
+      }).success(function() {
+        $(this).parents('#company-content-' + company_id).hide();
+      });
+    } return false;
   });
 
   $('.workspace-delete-link').click(function() {
-    confirm('<%= I18n.t("view.app.confirm_delete") %>');
-    workspace_id = $(this).attr('data-workspace-id');
+    if (confirm('<%= I18n.t("view.app.confirm_delete") %>')) {
+      workspace_id = $(this).attr('data-workspace-id');
+      $.ajax({
+        type: 'delete',
+        url: ' /workspaces/' + workspace_id,
+        data: {
+          workspace: {
+            id: workspace_id
+          }
+        },
+        context: this,
+        dataType: 'JSON'
+      }).success(function() {
+        $(this).parents('ul').hide();
+      });
+    } return false;
+  });
+  $(document).on('click', '.delete-link-room', function() {
+    if (confirm('<%= I18n.t("view.app.confirm_delete") %>')) {
+      room_id = $(this).attr('data-room-id');
+      $.ajax({
+        type: 'delete',
+        url: ' /rooms/' + room_id,
+        data: {
+          room: {
+            id: room_id
+          }
+        },
+        context: this,
+        dataType: 'JSON'
+      }).success(function() {
+        $(this).parents('ul').hide();
+      });
+    } return false;
+  });
+  $(document).on('click', '.unset-manager', function() {
+    user_id = $(this).attr('data-user-id');
     $.ajax({
-      type: 'delete',
-      url: ' /workspaces/' + workspace_id,
+      type: 'patch',
+      url: ' /manager_workspaces/' + user_id,
       data: {
-        workspace: {
-          id: workspace_id
+        user: {
+          position: 'personnel'
         }
       },
-      context: this,
-      dataType: 'JSON'
-    }).success(function() {
+      dataType: 'JSON',
+      context: this
+    }).success(function(responses) {
       $(this).parents('ul').hide();
     });
     return false;
   });
-
-  $('.delete-link-room').click(function() {
-    confirm('<%= I18n.t("view.app.confirm_delete") %>');
-    room_id = $(this).attr('data-room-id');
+  $(document).on('click', '.subtmit-add-employee', function(e) {
+    e.preventDefault();
+    full_name = $('#user_full_name').val();
+    user_email = $('#user_email').val();
+    user_password = $('#user_password').val();
+    user_password_confirmation = $('#user_password_confirmation').val();
+    workspace_id = $('#workspace-id').val();
+    controller = $(this).attr('data-controller');
+    form = $(this).parents('form').attr('class');
+    if (controller == 'workspaces') {
+      position = 'workspace_manager';
+    } else {
+      position = 'personnel';
+    }
+    if (form == 'new_user') {
+      if (user_password != user_password_confirmation ) {
+        alert('password confirm not match');
+      }else if (user_password == '') {
+        alert('password not empty');
+      }else {
+        $.ajax({
+          type: 'post',
+          url: ' /employees',
+          data: {
+            user: {
+              full_name: full_name ,
+              email: user_email ,
+              password: user_password ,
+              password_confirmation: user_password_confirmation ,
+              position: position,
+            },
+            workspace: {
+              workspace_id:  workspace_id
+            }
+          },
+          context: this,
+          dataType: 'JSON'
+        }).done(function(responses) {
+          if (controller == 'workspaces') {
+            $('#full-name-manager').append(' <ul class="ul-workspace">'+
+              '<li class="glyphicon glyphicon-briefcase"> '+responses.full_name  +
+              '<a class="unset-manager" data-user-id='+responses.id +'>'+
+              '<%= I18n.t("view.workspace.unset") %></a> </li></ul>');
+          } else {
+            $('#t-boby-user').prepend('<tr><td>'+responses.full_name+'</td><td>'+
+              responses.email+'</td><td>'+responses.position+'</td><td>'+
+              '<a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal" '+
+              'data-target="#edit-employee-modal-'+responses.id +'"></a>'+
+              '<a href="#" id="remove-employee" class=" glyphicon '+
+              'glyphicon-remove delete-employee" data-user-id="'+responses.id+'"> </a>'
+              +'</td></tr>');
+            alert('<%= I18n.t("view.user.add_personnel_success") %>');
+          }
+        }).fail(function() {
+          alert('<%= I18n.t("view.app.error") %>');
+        });
+      }
+    } else {
+      employee_id = $(this).parents('.modal-body').attr('data-employe-id');
+      name = $(this).parents('form').children('.group1').children('#user_full_name').val()
+      email = $(this).parents('form').children('.group2').children('#user_email').val();
+      password = $(this).parents('form').children('.group3').children('#user_password').val();
+      confirm_password = $(this).parents('form').children('.group4').
+        children('#user_password_confirmation').val();
+      if (password == '') {
+        user = {
+          full_name: name,
+          email: email
+        }
+      } else {
+        if (password !=  confirm_password) {
+          alert('<%= I18n.t("view.user.password_not_match") %>');
+        }
+        user = {
+          full_name: name,
+          email: email,
+          password: password ,
+          password_confirmation: confirm_password
+        }
+      }
+      $.ajax({
+        type: 'put',
+        url: '/employees/'+ employee_id,
+        data: {
+          user
+        },
+        context: this,
+        dataType: 'JSON'
+      }).success(function(responses) {
+        name_text = $(this).parents('tr').children().first().children();
+        mail_text = $(this).parents('tr').children(':nth-child(2)').children();
+        name_text.text(responses.full_name);
+        mail_text.text(responses.email);
+        alert('<%= I18n.t("view.app.update_success") %>');
+      }).fail(function() {
+        alert('<%= I18n.t("view.app.error") %>');
+      });
+    }
+  });
+  $(document).on('click', '.delete-employee', function(e) {
+    e.preventDefault();
+    if (confirm('<%= I18n.t("view.app.confirm_delete") %>')) {
+      employee_id = $(this).attr('data-user-id');
+      $.ajax({
+        type: 'delete',
+        url: ' /employees/' + employee_id,
+        data: {
+          user: {
+            id: employee_id
+          }
+        },
+        dataType: 'JSON',
+        context: this
+      }).success(function(responses) {
+        $(this).parents('tr').hide();
+      });
+    }
+  });
+  $(document).on('click', '#add-manager-select', function(e) {
+    e.preventDefault();
+    user_id = $('#user_id').val();
+    workspace_id = $(this).attr('data-workspace-id');
     $.ajax({
-      type: 'delete',
-      url: ' /rooms/' + room_id,
+      type: 'put',
+      url: '/manager_workspaces/'+ user_id,
       data: {
-        room: {
-          id: room_id
+        user: {
+          position: 'workspace_manager'
         }
       },
-      context: this,
-      dataType: 'JSON'
-    }).success(function() {
-      $(this).parents('ul').hide();
+      dataType: 'JSON',
+      context: this
+    }).success(function(responses) {
+      $(this).parents('#add-manager').modal('toggle');
+      $('#full-name-manager').append(' <ul class="ul-workspace">'+
+        '<li class="glyphicon glyphicon-briefcase"> '+responses.full_name  +
+        '<a class="unset-manager" data-user-id='+responses.id +'>'+
+        '<%= I18n.t("view.workspace.unset") %></a> </li></ul>');
     });
-    return false;
   });
 });

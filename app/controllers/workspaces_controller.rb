@@ -33,6 +33,9 @@ class WorkspacesController < ApplicationController
   def show
     @room = Room.new
     @rooms = Room.all
+    @employee = User.new
+    @manager_workspaces = ManagerWorkspace.all
+    @users_manger = ManagerWorkspace.find_workspace @workspace.id
   end
 
   private
