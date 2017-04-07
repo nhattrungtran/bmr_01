@@ -10,13 +10,7 @@
         </ul>
       </nav>
       <section class="three-fourth">
-        <nav class="inner-nav">
-          <ul>
-            <li><a href="#my-settings" ><%= t "view.user.settings" %></a></li>
-            <li><a href="#Workspaces" ><%= t "view.user.workspaces" %></a></li>
-            <li><a href="#my-company" ><%= t "view.user.my_company" %></a></li>
-          </ul>
-        </nav>
+        <%= render "layouts/nav_menu" %>
         <section id="my-settings" class="tab-content" >
           <article class="mysettings">
             <h1><%= t "view.user.personal_detail" %></h1>
@@ -72,28 +66,6 @@
             </table>
           </article>
         </section>
-        <section id="my-company" class="tab-content">
-          <article class="my-company">
-            <h1><%= t "view.user.my_company" %>
-              <span class="add-company-btn">
-              <button type="button" class="btn btn-default btn-sm btn-success"
-                data-toggle="modal" data-target="#add-company">
-                <span class="glyphicon glyphicon-plus " aria-hidden="true" ></span>
-                <%= t "view.company.add_company" %>
-              </button>
-              </span>
-            </h1>
-            <%= render "companies/company" %>
-          </article>
-        </section>
-        <section id="Workspaces" class="tab-content">
-          <article class="bookings">
-            <h1><a href="#"><%= t "view.user.workspaces" %></a></h1>
-            <div class="b-info"></div>
-            <div class="actions"></div>
-          </article>
-        </section>
-      </section>
     </div>
   </div>
 </div>

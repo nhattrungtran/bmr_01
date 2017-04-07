@@ -1,0 +1,40 @@
+<div id="add-room" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= t "view.room.add_room" %></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @room do |f| %>
+          <div class="input-group">
+            <%= f.label t("view.room.name"),
+              class: "col-md-3 control-label label-form" %>
+            <%= f.text_field :name, class: "form-input form-control",
+              autofocus: true %>
+          </div>
+          <div class="input-group">
+            <%= f.label t("view.room.descript"),
+              class: "col-md-3 control-label label-form" %>
+            <%= f.text_field :descript, class: "form-input form-control",
+              autofocus: true %>
+          </div>
+          <div class="input-group">
+            <%= f.label "Max guest",
+              class: "col-md-3 control-label label-form" %>
+            <%= f.number_field :max_guest, class: "form-input form-control",
+              autofocus: true %>
+          </div>
+          <input type="hidden" name="room[workspace_id]"
+            value="<%= @workspace.id %>">
+          <%= f.submit t("view.app.add"), id: "submit6",
+            class: "gradient-button" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+          data-dismiss="modal"><%= t "view.app.close" %></button>
+      </div>
+    </div>
+  </div>
+</div>

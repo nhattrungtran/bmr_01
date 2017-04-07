@@ -15,7 +15,10 @@ class WorkspacesController < ApplicationController
     @workspace.update_attributes workspace_params
     respond_to do |format|
       format.json {
-        render json: {workspace_name: @workspace.name}
+        render json: {
+          workspace_name: @workspace.name,
+          workspace_descript: @workspace.descript
+        }
       }
     end
   end
@@ -28,6 +31,8 @@ class WorkspacesController < ApplicationController
   end
 
   def show
+    @room = Room.new
+    @rooms = Room.all
   end
 
   private

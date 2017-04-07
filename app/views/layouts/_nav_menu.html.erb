@@ -1,0 +1,16 @@
+<nav class="inner-nav">
+  <ul>
+    <li class="<%= active_menu "users" %>">
+      <%= link_to t("view.user.settings"), user_path(current_user), data: {turbolinks: false} %>
+    </li>
+
+    <li class="<%= active_menu "companies" %>">
+      <%= link_to t("view.user.my_company"), companies_path, data: {turbolinks: false} %>
+    </li>
+    <% if is_workspace_controller "workspaces"  %>
+      <li class="<%= active_menu "workspaces" %>">
+        <%= link_to t("view.user.workspaces") %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

@@ -124,6 +124,33 @@ $(document).ready(function() {
     });
   });
 
+  $('.btn-save-workspace-descript').click(function(){
+    workspace_id = $(this).attr('data-workspace-id');
+    workspace_descript = $(this).prev().val();
+    $.ajax({
+      type: 'put',
+      url: '/workspaces/' + workspace_id,
+      data: {
+        workspace: {
+          descript: workspace_descript,
+          id: workspace_id
+        }
+      },
+      context: this,
+      dataType: 'JSON'
+    }).success(function(responses) {
+      $(this).parent().hide(200);
+      $(this).parent().prev().text(responses.workspace_descript);
+      alert_success = $(this).parents('article').children().first().next();
+      alert_success.addClass('alert alert-success')
+        .html('<%= I18n.t("view.workspace.update_workspace_success") %>')
+        .css('display', 'block');
+      setTimeout(function() {
+        alert_success.fadeToggle();
+      }, 3000);
+    });
+  });
+
   $('.delete-btn').click(function() {
     confirm('<%= I18n.t("view.app.confirm_delete") %>');
     company_id = $(this).attr('data-company-id');
@@ -152,6 +179,25 @@ $(document).ready(function() {
       data: {
         workspace: {
           id: workspace_id
+        }
+      },
+      context: this,
+      dataType: 'JSON'
+    }).success(function() {
+      $(this).parents('ul').hide();
+    });
+    return false;
+  });
+
+  $('.delete-link-room').click(function() {
+    confirm('<%= I18n.t("view.app.confirm_delete") %>');
+    room_id = $(this).attr('data-room-id');
+    $.ajax({
+      type: 'delete',
+      url: ' /rooms/' + room_id,
+      data: {
+        room: {
+          id: room_id
         }
       },
       context: this,

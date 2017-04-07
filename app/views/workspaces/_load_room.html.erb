@@ -1,0 +1,48 @@
+<ul class="ul-workspace">
+  <li >
+    <%= link_to room.name, "", class: "glyphicon glyphicon-modal-window
+      room-name-label" %>
+    <span>
+      <a href="#" class="edit-link-room" data-toggle="modal"
+        data-target="#form-room-<%= room.id %>"><%= t "view.app.edit" %></a>
+      <a href="#" class="delete-link-room" data-room-id="<%= room.id %>" >
+        <%= t "view.app.delete" %>
+      </a>
+    </span>
+  </li>
+  <!-- Modal -->
+  <div id="form-room-<%= room.id %>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+            data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><%= t "view.room.edit_room" %></h4>
+        </div>
+        <div class="modal-body">
+          <%= form_for room do |f| %>
+          <div class="input-group">
+            <%= f.label "name"%>
+            <%= f.text_field  :name, autocomplete: "off" %>
+          </div>
+          <div class="input-group">
+            <%= f.label "descript"%>
+            <%= f.text_field  :descript, autocomplete: "off" %>
+          </div>
+          <div class="input-group">
+            <%= f.label "max guest"%>
+            <%= f.text_field  :max_guest, autocomplete: "off" %>
+          </div>
+          <%= f.submit t("view.user.save"), id: "submit1",
+            class: "gradient-button" %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+            data-dismiss="modal"><%= t "view.app.close" %></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ul>

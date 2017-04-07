@@ -5,24 +5,72 @@
       <nav role="navigation" class="breadcrumbs clearfix">
         <ul class="crumbs">
           <h2 class="title-account">
-            <%= t "view.user.my_account" %>
+            <%= t "view.workspace.workspace_name" %>
           </h2>
         </ul>
       </nav>
       <section class="three-fourth">
-        <nav class="inner-nav">
-          <ul>
-            <li><a href="#Workspaces" ><%= t "view.user.workspaces" %></a></li>
-            <li><a href="#my-settings" ><%= t "view.user.settings" %></a></li>
-            <li><a href="#my-company" ><%= t "view.user.my_company" %></a></li>
-          </ul>
-        </nav>
-        <section id="Workspaces" class="tab-content">
-          <article class="bookings">
-            <h1><a href="#"><%= t "view.user.workspaces" %> </a></h1>
-            <div class="b-info"><%= @workspace.name %></div>
-            <div class="b-info"><%= @workspace.descript %> </div>
-            <div class="actions"></div>
+        <%= render "layouts/nav_menu" %>
+        <section id="workspace" class="tab-content" >
+          <article class="mysettings">
+            <h1><%= t "view.user.workspaces" %>
+              <button type="button" class="btn btn-default btn-sm btn-addroom"
+                data-toggle="modal" data-target="#add-room" >
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <%= t "view.room.add_room" %>
+              </button>
+            </h1>
+            <div class="alert-update-user"></div>
+            <table>
+              <tbody>
+                <%= render "add_room" %>
+                <tr>
+                  <th><%= t "view.workspace.name" %> </th>
+                  <td>
+                    <span id="full-name-user"><%= @workspace.name %></span>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr>
+                  <th> <%= t "view.workspace.descript" %> </th>
+                  <td>
+                    <span id="full-name-user"> <%= @workspace.descript %></span>
+                    <div class="edit_field" id="edit-descript-workspace" >
+                      <label for="new_name">
+                        <%= t "view.workspace.new_workspace_descript" %>
+                      </label>
+                      <input type="text" value="<%= @workspace.descript %>">
+                      <button class="btn-save-workspace-descript btn btn-success"
+                        data-workspace-id="<%= @workspace.id %>">
+                        <%= t "view.app.save" %>
+                      </button>
+                    </div>
+                  </td>
+                  <td><a href="#edit-descript-workspace" class="gradient-button edit">
+                    <%= t "view.user.edit" %></a>
+                  </td>
+                </tr>
+                <tr>
+                  <th><%= t "view.room.rooom" %></th>
+                  <td>
+                    <%= render partial: "load_room", collection: @rooms, as: :room %>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr>
+                  <th> <%= t "view.workspace.personnel" %> </th>
+                  <td>
+                    <span id="full-name-user"></span>
+                  </td>
+                  <td class="manager-user-td">
+                    <span ><%= link_to t("view.workspace.manager_user"), users_path ,
+                      class: "manager-user-a" %></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </article>
         </section>
       </section>

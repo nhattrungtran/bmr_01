@@ -1,0 +1,32 @@
+<%= render "users/header_user" %>
+<div class="main account-main" role="main">
+  <div class="wrap clearfix">
+    <div class="content clearfix">
+      <nav role="navigation" class="breadcrumbs clearfix">
+        <ul class="crumbs">
+          <h2 class="title-account">
+            <%= t "view.user.my_account" %>
+          </h2>
+        </ul>
+      </nav>
+      <section class="three-fourth">
+        <%= render "layouts/nav_menu" %>
+        <section id="my-company" class="tab-content">
+          <article class="my-company">
+            <h1><%= t "view.user.my_company" %>
+              <span class="add-company-btn">
+              <button type="button" class="btn btn-default btn-sm btn-success"
+                data-toggle="modal" data-target="#add-company">
+                <span class="glyphicon glyphicon-plus " aria-hidden="true" ></span>
+                <%= t "view.company.add_company" %>
+              </button>
+              </span>
+            </h1>
+            <%= render "companies/company" %>
+          </article>
+        </section>
+      </section>
+    </div>
+  </div>
+</div>
+<%= render "layouts/footer" %>
