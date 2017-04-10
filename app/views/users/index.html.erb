@@ -1,0 +1,63 @@
+<%= render "users/header_user" %>
+<div class="main account-main" role="main">
+  <div class="wrap clearfix">
+    <div class="content clearfix">
+      <nav role="navigation" class="breadcrumbs clearfix">
+        <ul class="crumbs">
+          <h2 class="title-account">
+            <%= t "view.user.all_personnel" %>
+          </h2>
+        </ul>
+      </nav>
+      <section class="three-fourth">
+        <%= render "layouts/nav_menu" %>
+        <section id="Workspaces" class="tab-content">
+          <article class="bookings">
+            <h1> <%= t "view.user.all_personnel_workspace" %>
+             <%= (load_workspace params[:workspace_id]).
+               name if load_workspace params[:workspace_id] %></h1>
+            <a href="#" class="gradient-button add-employee" data-toggle="modal"
+              data-target="#add-employee-modal"> <%= t "view.user.add_personnel" %>
+            </a>
+            <div id="add-employee-modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> <%= t "view.user.add_personnel" %></h4>
+                  </div>
+                  <span id="alert-success-addperson" class="alert alert-success"></span>
+                  <div class="modal-body">
+                    <%= render "employee/add_employee_form",
+                      employee: @employee_new %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                       <%= t "view.app.close" %>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table>
+              <tr>
+                <th>
+                  <%= t "view.user.full_name" %>
+                </th>
+                <th><%= t "view.user.email" %></th>
+                <th><%= t "view.user.position" %> </th>
+                <th><%= t "view.app.action" %></th>
+              </tr>
+              <tbody id="t-boby-user">
+                <%= render partial: "load_user", collection: @users,
+                  as: :user_of_workspace %>
+              </tbody>
+            </table>
+            <%= paginate @users %>
+          </article>
+        </section>
+      </section>
+    </div>
+  </div>
+</div>
+<%= render "layouts/footer" %>

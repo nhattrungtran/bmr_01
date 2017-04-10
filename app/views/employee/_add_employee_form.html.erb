@@ -1,0 +1,25 @@
+<%= form_for employee, url: employees_path, method: :post do |f| %>
+  <div class="form-group group1">
+    <%= f.label :full_name, class: "col-md-3 control-label label-form" %>
+    <br/>
+    <%= f.text_field :full_name, autofocus: true, class: "full-name" %>
+  </div>
+  <div class="form-group group2">
+    <%= f.label :email, class: "col-md-3 control-label label-form" %>
+    <br/>
+    <%= f.email_field :email, autofocus: true , class: "email-user" %>
+  </div>
+  <div class="form-group group3">
+    <%= f.label :password, class: "col-md-3 control-label label-form" %>
+    <%= f.password_field :password, autocomplete: "off", class: "pass-user" %>
+  </div>
+  <div class="form-group group4">
+    <%= f.label :password_confirmation, class: "col-md-3 control-label
+      label-form" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off"%>
+  </div>
+  <input type="hidden" id="workspace-id" name="workspace[workspace_id]"
+    value="<%= @workspace.id %>">
+  <%= f.submit t("view.app.add"), class: "subtmit-add-employee gradient-button",
+    data: {controller: params[:controller] }, "data-dismiss": "modal" %>
+ <% end %>

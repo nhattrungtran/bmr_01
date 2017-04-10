@@ -1,0 +1,12 @@
+<% if workspace.id == manager_workspace.workspace_id &&
+  manager_workspace.user.position == "workspace_manager" %>
+  <ul class="ul-workspace">
+    <li class="glyphicon glyphicon-briefcase">
+      <%= manager_workspace.user.full_name %>
+      <a class="unset-manager"
+        data-user-id="<%= manager_workspace.user.id %>">
+        <%= t "view.workspace.unset" %>
+      </a>
+    </li>
+  </ul>
+<% end  %>

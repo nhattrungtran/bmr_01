@@ -59,14 +59,72 @@
                   <td>
                   </td>
                 </tr>
-                <tr>
+                 <tr>
                   <th> <%= t "view.workspace.personnel" %> </th>
                   <td>
-                    <span id="full-name-user"></span>
+                    <span id="full-name-user">
+                      <%= @workspace.manager_workspaces.size %>
+                    </span>
                   </td>
                   <td class="manager-user-td">
-                    <span ><%= link_to t("view.workspace.manager_user"), users_path ,
-                      class: "manager-user-a" %></span>
+                    <span ><%= link_to "Manager personnel",
+                       users_path(workspace_id: @workspace.id),
+                       data: {turbolinks: false}, class: "manager-user-a" %>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <th> <%= t "view.workspace.manager" %> </th>
+                  <td>
+                    <span id="full-name-manager">
+                      <%= render partial: "load_manager_workspace",
+                        collection: @manager_workspaces, as: :manager_workspace,
+                        locals: { workspace: @workspace} %>
+                    </span>
+                  </td>
+                 <td class="manager-user-td">
+                    <button type="button" class="btn btn-default btn-sm btn-addmanager"
+                      data-toggle="modal" data-target="#add-manager" >
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      <%= t "view.workspace.add_manager" %>
+                    </button>
+                       <!-- Modal -->
+                      <div id="add-manager" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title title-addmanager">
+                                <%= t "view.workspace.add_manager" %></h4>
+                            </div>
+                            <div class="modal-body">
+                              <div class="form-group">
+                                <div class="input-group">
+                                  <label><%= t "view.workspace.find_personnel" %>
+                                  </label>
+                                </div>
+                                <%= select_tag "user_id",
+                                  options_for_select(@users_manger.
+                                  collect{|u| [u.user_full_name, u.user_id ]}),
+                                  class: "select-form form-control " %>
+                                <input type="button" name=""
+                                  value="<%= t "view.app.add"%>"
+                                  class="gradient-button btn-addmanager"
+                                  id="add-manager-select"
+                                  data-workspace-id= "<%= @workspace.id %>">
+                              </div>
+                              <%= render "employee/add_employee_form", employee: @employee %>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                                <%= t "view.app.close" %>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   </td>
                 </tr>
               </tbody>

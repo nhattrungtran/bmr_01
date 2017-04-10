@@ -1,3 +1,26 @@
+.unset-manager{
+  margin-left: 10px;
+  cursor: pointer;
+  color: blue;
+}
+.add-employee{
+  margin-top: 10px;
+}
+.form-group{
+  text-align: center !important;
+}
+.btn-addmanager{
+  margin-top:10px;
+}
+.title-addmanager{
+  text-align: center;
+  font-size: 20px;
+  color: #07C;
+}
+.unset-manager:hover{
+  color: red;
+}
+
 .edit_field{
   display: none;
 }

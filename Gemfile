@@ -19,6 +19,7 @@ gem "coffee-rails", "4.2.1"
 gem "jquery-rails", "4.1.1"
 gem "bootstrap-sass", "3.3.6"
 gem "kaminari"
+gem "active_model_serializers"
 gem "bootstrap-datepicker-rails"
 gem "i18n-js", ">= 3.0.0.rc11"
 

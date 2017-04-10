@@ -13,7 +13,7 @@ class RoomsController < ApplicationController
 
   def update
     @room.update_attributes room_params
-     if @room.save
+    if @room.save
       flash[:success] = t "view.room.update_room_success"
     else
       flash[:danger] = t "view.room.update_room_fail"

@@ -1,0 +1,45 @@
+<tr>
+  <td>
+    <span class="name-span">
+      <%= user_of_workspace.user_full_name %>
+    </span>
+  </td>
+  <td> <span class="mail-span">
+    <%= user_of_workspace.user_email %> </span></td>
+  <td>
+    <%= user_of_workspace.user_position %>
+  </td>
+  <td>
+  <a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal"
+    data-target="#edit-employee-modal-<%= user_of_workspace.id %>">
+  </a>
+  <div id="edit-employee-modal-<%= user_of_workspace.id %>"
+    class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+            data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><%= t "view.user.edit_personnel" %></h4>
+        </div>
+        <div class="modal-body"
+          data-employe-id="<%= user_of_workspace.user_id %>">
+          <%= render "employee/add_employee_form",
+            employee: user_of_workspace.user %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id= "close-modal"
+            class="btn btn-default" data-dismiss="modal">
+            <%= t "view.app.close" %>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#"  class=" glyphicon
+    glyphicon-remove delete-employee"
+    data-user-id="<%= user_of_workspace.user_id %>">
+  </a>
+  </td>
+</tr>
