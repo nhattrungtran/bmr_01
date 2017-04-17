@@ -2,7 +2,7 @@ class EmployeesController < ApplicationController
   before_action :load_user, only: [:update, :destroy]
 
   def create
-    @user = User.new user_params
+   @user = User.new user_params
     if @user.save
       @manager = ManagerWorkspace.new workspace_params
       @manager.save

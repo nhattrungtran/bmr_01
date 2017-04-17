@@ -83,7 +83,10 @@ en:
       add_personnel: "Add personnel"
       edit_personnel: "Edit personnel"
       add_personnel_success: "Add personnel success"
-
+    import:
+      import_success: "Import success"
+      error:  "Unknown file type:"
+      import_fail: "Import fail"
     index:
       home: "Home"
       title_content_page: "Book Meeting Room System"

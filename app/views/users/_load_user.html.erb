@@ -1,13 +1,13 @@
 <tr>
   <td>
     <span class="name-span">
-      <%= user_of_workspace.user_full_name %>
+      <%= user_of_workspace.full_name %>
     </span>
   </td>
   <td> <span class="mail-span">
-    <%= user_of_workspace.user_email %> </span></td>
+    <%= user_of_workspace.email %> </span></td>
   <td>
-    <%= user_of_workspace.user_position %>
+    <%= user_of_workspace.position %>
   </td>
   <td>
   <a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal"
@@ -24,9 +24,9 @@
           <h4 class="modal-title"><%= t "view.user.edit_personnel" %></h4>
         </div>
         <div class="modal-body"
-          data-employe-id="<%= user_of_workspace.user_id %>">
+          data-employe-id="<%= user_of_workspace.id %>">
           <%= render "employee/add_employee_form",
-            employee: user_of_workspace.user %>
+            employee: user_of_workspace  %>
         </div>
         <div class="modal-footer">
           <button type="button" id= "close-modal"
@@ -39,7 +39,7 @@
   </div>
   <a href="#"  class=" glyphicon
     glyphicon-remove delete-employee"
-    data-user-id="<%= user_of_workspace.user_id %>">
+    data-user-id="<%= user_of_workspace.id %>">
   </a>
   </td>
 </tr>

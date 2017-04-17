@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330032811) do
+ActiveRecord::Schema.define(version: 20170413073444) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "", null: false
@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(version: 20170330032811) do
     t.datetime "time_start"
     t.datetime "time_end"
     t.integer  "number_guest"
-    t.integer  "book_status"
-    t.integer  "meeting_status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "book_status",    default: 0
+    t.integer  "meeting_status", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "color",          default: 0
     t.index ["room_id"], name: "index_bookings_on_room_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
@@ -83,7 +84,7 @@ ActiveRecord::Schema.define(version: 20170330032811) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.integer  "position",                default: 1
+    t.integer  "position",               default: 1
     t.string   "full_name",              default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -95,8 +96,10 @@ ActiveRecord::Schema.define(version: 20170330032811) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "workspace_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["workspace_id"], name: "index_users_on_workspace_id", using: :btree
   end
 
   create_table "workspaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -115,5 +118,6 @@ ActiveRecord::Schema.define(version: 20170330032811) do
   add_foreign_key "manager_workspaces", "users"
   add_foreign_key "manager_workspaces", "workspaces"
   add_foreign_key "rooms", "workspaces"
+  add_foreign_key "users", "workspaces"
   add_foreign_key "workspaces", "companies"
 end

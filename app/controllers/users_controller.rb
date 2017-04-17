@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = @workspace.manager_workspaces.newest.page(params[:page]).
+    @users = User.find_all_user_of_workspace(@workspace.id).newest.page(params[:page]).
       per Settings.per_page
     @employee_new = User.new
   end

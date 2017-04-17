@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :rooms
   resources :employees
   resources :manager_workspaces
+  resources :imports
 end
